@@ -16,11 +16,11 @@ import org.junit.jupiter.api.Test;
 import com.skilldistillery.film.entities.Film;
 
 class FilmDAOTest {
-	FilmDAOTestMemoryImpl testDAO;
+	FilmDAOJDBCImpl testDAO;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		testDAO = new FilmDAOTestMemoryImpl();
+		testDAO = new FilmDAOJDBCImpl();
 	}
 
 	@AfterEach
@@ -30,14 +30,14 @@ class FilmDAOTest {
 
 	 @Test
 	 void test_findById_returns_film() {
-	 	Film film = testDAO.findByID(1);
+	 	Film film = testDAO.findFilmById(1);
 	 	assertNotNull(film);
 	 	assertEquals("ACADEMY DINOSAUR", film.getTitle());
 	 }
 	 
 	 @Test
 	 void test_findById_returns_null_for_invalid_id() {
-	 	Film film = testDAO.findByID(1234567);
+	 	Film film = testDAO.findFilmById(1234567);
 	 	assertNull(film);
 	 }
 

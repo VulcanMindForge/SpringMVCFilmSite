@@ -1,8 +1,3 @@
-/*
-Synopsis:
-Author:
-Version: 
- */
 package com.skilldistillery.film.entities;
 
 import java.util.List;
@@ -136,7 +131,7 @@ public class Film {
 	public void setActors(List<Actor> actors) {
 		this.actors = actors;
 	}
-
+	
 	public String getActorNames() {
 		StringBuilder builder = new StringBuilder();
 		for (Actor actor : actors) {

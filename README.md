@@ -11,6 +11,11 @@
 
 # Description of this project
 Site that will allow a user to search a database based on various criteria.
+- Actor
+- Language
+- Title/Description
+- Film ID
+- Category
 
 # How to use this project
 Access the site and respond to the prompts to search the database.
@@ -27,10 +32,21 @@ I will be pulling from the following languages.
 
 # Current Progress
 - Created basic project
+- Implemented home page
+- Implemented search criteria
+- Implemented DAO objects and Film Controller
+
 
 # Next Steps
-- Everything
+- Implement Film and Actor JSP
+- Implement Error page
+- Clean up and Implement CSS/Page views
 
 # Lessons learned or reinforced on this project
+- SQL queries
+- TAG Library
+- HTML parameters
+- HTML/CSS in general
 
 # Lessons to research
+- Connection pooling
