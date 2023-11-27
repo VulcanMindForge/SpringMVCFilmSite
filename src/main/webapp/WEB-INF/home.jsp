@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ include file="header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 	<p>Please excuse the mess as we are still under constructions.
 	<p>
 	<div>
-		<form action="search.do" method="GET">
+		<form class="form-group" action="search.do" method="GET">
 			<input type="text" name="search">
 			<div>
 				<button type="submit" name="searchType" value="film_id">Film ID</button>

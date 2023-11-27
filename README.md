@@ -37,11 +37,10 @@ I will be pulling from the following languages.
 - Implemented DAO objects and Film Controller
 - Implemented Error page
 - Implemented Film and Actor JSP with linking
-
+- Implemented Header Nav Bar and imported to jsp views
 
 # Next Steps
 - Clean up and Implement CSS/Page views
-- Add home link at the top of each page
 
 # Lessons learned or reinforced on this project
 - SQL queries
