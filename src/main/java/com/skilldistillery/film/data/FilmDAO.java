@@ -28,4 +28,8 @@ public interface FilmDAO {
 	public List<Actor> findActorsByFilmId(int filmId);
 
 	public String findLanguageByID(int languageID);
+
+	public String findCategoryByFilmID(int filmID);
+
+	Actor findActorById(int ActorId);
 }

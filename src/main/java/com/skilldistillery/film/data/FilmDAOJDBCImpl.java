@@ -63,7 +63,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			stmt.setInt(1, filmId);
 			ResultSet filmResult = stmt.executeQuery();
 
-			if (filmResult.next()) {
+			while (filmResult.next()) {
 				film = addFilm(filmResult);
 			}
 
@@ -72,6 +72,35 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 			return film;
+		}
+	}
+
+	@Override
+	public Actor findActorById(int ActorId) {
+		Actor actor = null;
+		String sqlTxt = "SELECT * FROM actor WHERE id = ?";
+		
+		try {
+			Connection conn = DriverManager.getConnection(URL, dBUserName, dBPassword);
+			PreparedStatement stmt = conn.prepareStatement(sqlTxt);
+			stmt.setInt(1, ActorId);
+			ResultSet actorResult = stmt.executeQuery();
+			
+			if (actorResult.next()) {
+				int id = actorResult.getInt("id");
+				String firstName = actorResult.getString("first_name");
+				String lastName = actorResult.getString("last_name");
+				List<Film> films = findFilmByActorId(id);
+				actor = new Actor(firstName, lastName);
+				actor.setFilms(films);
+				actor.setActorId(id);
+			}
+			
+			tearDown(conn, stmt, actorResult);
+			return actor;
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			return actor;
 		}
 	}
 
@@ -91,7 +120,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 				String lastName = rs.getString("last_name");
 
 				Actor actor = new Actor(firstName, lastName);
-				actor.setId(actorId);
+				actor.setActorId(actorId);
 				actors.add(actor);
 			}
 			tearDown(conn, stmt, rs);
@@ -244,6 +273,28 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 		}
 	}
 
+	@Override
+	public String findCategoryByFilmID(int filmID) {
+		String categoryName = null;
+		String sqlTxt = "SELECT c.name FROM category c JOIN film_category fc ON c.id = fc.category_id JOIN film f ON fc.film_id = f.id WHERE f.id = ?";
+		
+		try {
+			Connection conn = DriverManager.getConnection(URL, dBUserName, dBPassword);
+			PreparedStatement stmt = conn.prepareStatement(sqlTxt);
+			stmt.setInt(1, filmID);
+			ResultSet categoryResult = stmt.executeQuery();
+			
+			while (categoryResult.next()) {
+				categoryName = categoryResult.getString("name");
+			}
+			tearDown(conn, stmt, categoryResult);
+			return categoryName;
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			return categoryName;
+		}
+	}
+
 	public Set<String> stringToSet(String stringToSplit) {
 		Set<String> postSplitString = new HashSet<>();
 		String[] splitString = stringToSplit.split(",");
@@ -260,6 +311,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 		film.setDesc(result.getString("description"));
 		film.setReleaseYear(result.getShort("release_year"));
 		film.setLangId(result.getInt("language_id"));
+		film.setLanguage(findLanguageByID(result.getInt("language_id")));
 		film.setRentDur(result.getInt("rental_duration"));
 		film.setRate(result.getDouble("rental_rate"));
 		film.setLength(result.getInt("length"));
@@ -267,6 +319,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 		film.setRating(result.getString("rating"));
 		film.setFeatures(stringToSet(result.getString("special_features")));
 		film.setActors(findActorsByFilmId(result.getInt("id")));
+		film.setCategory(findCategoryByFilmID(result.getInt("id")));
 		return film;
 	}
 

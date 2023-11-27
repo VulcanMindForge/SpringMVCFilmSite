@@ -35,12 +35,13 @@ I will be pulling from the following languages.
 - Implemented home page
 - Implemented search criteria
 - Implemented DAO objects and Film Controller
+- Implemented Error page
+- Implemented Film and Actor JSP with linking
 
 
 # Next Steps
-- Implement Film and Actor JSP
-- Implement Error page
 - Clean up and Implement CSS/Page views
+- Add home link at the top of each page
 
 # Lessons learned or reinforced on this project
 - SQL queries

@@ -5,12 +5,11 @@ Version:
  */
 package com.skilldistillery.film.entities;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Actor {
-	private int id;
+	private int actorId;
 	private String firstName;
 	private String lastName;
 	private List<Film> films;
@@ -23,12 +22,12 @@ public class Actor {
 		this.lastName = lastName;
 	}
 
-	public int getId() {
-		return id;
+	public int getActorId() {
+		return actorId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setActorId(int id) {
+		this.actorId = id;
 	}
 
 	public String getFirstName() {
@@ -48,8 +47,7 @@ public class Actor {
 	}
 
 	public List<Film> getFilms() {
-		List<Film> filmsCopy = new ArrayList<>(films);
-		return filmsCopy;
+		return films;
 	}
 
 	public void setFilms(List<Film> films) {
@@ -58,7 +56,7 @@ public class Actor {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(films, firstName, id, lastName);
+		return Objects.hash(films, firstName, actorId, lastName);
 	}
 
 	@Override
@@ -70,7 +68,7 @@ public class Actor {
 		if (getClass() != obj.getClass())
 			return false;
 		Actor other = (Actor) obj;
-		return Objects.equals(films, other.films) && Objects.equals(firstName, other.firstName) && id == other.id
+		return Objects.equals(films, other.films) && Objects.equals(firstName, other.firstName) && actorId == other.actorId
 				&& Objects.equals(lastName, other.lastName);
 	}
 
@@ -78,7 +76,7 @@ public class Actor {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Actor [id=");
-		builder.append(id);
+		builder.append(actorId);
 		builder.append(", ");
 		if (firstName != null) {
 			builder.append("firstName=");

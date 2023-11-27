@@ -10,17 +10,26 @@
 <body>
 	<h2>You searched for</h2>
 	<c:out value="${search}" />
-	
-	<c:if test="${films.size() < 1 }">
-		<p>We didn't find anything based on that search term.</p>
-	</c:if>
-	<c:forEach var="film" items="${films}">
-		<ul>
-			<li>${film.filmId}</li>
-			<li>${film.title}</li>
-			<li>${film.desc}</li>
-			<li>${film.releaseYear}</li>
-		</ul>
-	</c:forEach>
+
+	<table>
+		<thead>
+			<tr>
+				<td>Title</td>
+				<td>Year</td>
+				<td>Rating</td>
+				<td>Category</td>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="film" items="${films}">
+				<tr>
+					<td><a href="search.do?search=${film.filmId}&searchType=film_id">${film.title}</a></td>
+					<td>${film.releaseYear}</td>
+					<td>${film.rating}</td>
+					<td><a href="search.do?search=${film.category}&searchType=category">${film.category}</a></td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 </body>
 </html>

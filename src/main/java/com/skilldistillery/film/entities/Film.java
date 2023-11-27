@@ -10,6 +10,7 @@ public class Film {
 	private String desc;
 	private short releaseYear;
 	private int langId;
+	private String language;
 	private int rentDur;
 	private double rate;
 	private int length;
@@ -17,6 +18,7 @@ public class Film {
 	private String rating;
 	private Set<String> features;
 	private List<Actor> actors;
+	private String category;
 
 	public Film() {
 	}
@@ -75,6 +77,14 @@ public class Film {
 	public void setLangId(int langId) {
 		this.langId = langId;
 	}
+	
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
 
 	public int getRentDur() {
 		return rentDur;
@@ -132,6 +142,14 @@ public class Film {
 		this.actors = actors;
 	}
 	
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	public String getActorNames() {
 		StringBuilder builder = new StringBuilder();
 		for (Actor actor : actors) {
